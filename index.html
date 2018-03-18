@@ -14,6 +14,8 @@
 
 <body>
 
+
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -23,15 +25,25 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
 
-    <div class="container body-container">
-       
-            <div class="col-xs-12">
+            <div id="info" class="col-xs-8 col-xs-offset-2">
+                Press any letter key to start
+            </div>
+        </div>
+
+        <div class="row body-container">
+
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="guess">
                     <h1>Guess the Word</h1>
                     <div id="current-word"></div>
                 </div>
+            </div>
+
+            <div id="score" class="class col-xs-12 col-md-2">
+                Wins=<span id="wins" class=""></span>
+                Loses=<span id="loses" class=""></span>
             </div>
 
             <div class="col-xs-6">
@@ -47,14 +59,14 @@
                     <div id="already-guessed"></div>
                 </div>
             </div>
-       
-    </div>
-    
 
-    <!-- <img class="img" src="https://vignette.wikia.nocookie.net/gotascent/images/8/88/Game-of-thrones-house-567481.jpg/revision/latest?cb=20140703211035" 
+        </div>
+
+
+        <!-- <img class="img" src="https://vignette.wikia.nocookie.net/gotascent/images/8/88/Game-of-thrones-house-567481.jpg/revision/latest?cb=20140703211035" 
     alt="Game of Thrones"> -->
 
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
+        <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>
