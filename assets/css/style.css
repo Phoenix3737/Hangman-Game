@@ -1,0 +1,96 @@
+#current-word {
+    letter-spacing: 20px;
+}
+
+@font-face {
+    font-family: 'game_of_thronesregular';
+    src: url('fonts/game_of_thrones-webfont.woff2') format('woff2'),
+         url('fonts/game_of_thrones-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    
+
+}
+
+body {
+    background-image: url("https://vignette.wikia.nocookie.net/gotascent/images/8/88/Game-of-thrones-house-567481.jpg/revision/latest?cb=20140703211035" );
+    filter: opacity (50%);
+    font-family: 'game_of_thronesregular', Arial, sans-serif;
+    font-weight:normal;
+    font-style:normal;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    }
+
+.body-container {
+    padding-top: 50px;
+    background-color: rgba(0,0,0,.7);
+    border: 8px outset #b9b9b9;
+    box-shadow: 10px 10px 20px black;
+}
+
+.img  {
+    width: 50%;
+    height: 50%;
+    float: left;
+
+}
+
+h2 {
+    margin-top: 0px;
+}
+
+
+#current-word  {
+    font-size: 30px;
+    
+}
+
+#already-guessed {
+    margin-top: 27px;
+    font-size: 30px;
+}
+
+#guesses-remaining {
+    font-size: 42px;
+}
+
+.guess, .remaining, .already  {
+    text-align: center;
+    margin-bottom: 50px;
+    /* box-shadow: 5px 5px black; */
+    
+    
+}
+
+#got {
+    font-size: 50px;
+}
+
+
+.container  {
+    text-shadow:-2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* .game-text  {
+    float: right;
+} */
+
+
+
+
+
+
+
+
