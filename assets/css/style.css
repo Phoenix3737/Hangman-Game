@@ -1,5 +1,5 @@
 #current-word {
-    letter-spacing: 20px;
+    letter-spacing: 10px;
 }
 
 @font-face {
@@ -26,6 +26,7 @@ body {
     }
 
 .body-container {
+    text-align: center;
     padding-top: 50px;
     background-color: rgba(0,0,0,.7);
     border: 8px outset #b9b9b9;
@@ -37,7 +38,7 @@ body {
     background-color: rgba(0,0,0,.7);
     border: 8px outset #b9b9b9;
     box-shadow: 10px 10px 20px black;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     font-size: 14px;
     padding: 25px 0;
 }
@@ -66,7 +67,8 @@ h2 {
 }
 
 #score {
-
+    word-spacing: 30px;
+    padding-right: 25px;
 }
 
 
@@ -87,9 +89,7 @@ h2 {
 .guess, .remaining, .already  {
     text-align: center;
     margin-bottom: 50px;
-    /* box-shadow: 5px 5px black; */
-    
-    
+   
 }
 
 #got {
@@ -102,11 +102,17 @@ h2 {
     2px -2px 0 #000,
     -2px 2px 0 #000,
     2px 2px 0 #000;
+    word-spacing: 8px;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    /* word-spacing: 10px; */
+}
+
+.count {
+    font-size: 20px;
 }
 
 /* .game-text  {

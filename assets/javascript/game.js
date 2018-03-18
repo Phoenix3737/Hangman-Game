@@ -1,10 +1,15 @@
 var isActive = true;
 
 window.addEventListener("keyup", function (e) {         // callback function
-    if ( isActive === false && e.keyCode === 13){
-        window.location.reload()
+    if ( isActive === false ){
+        if (e.keyCode === 13){
+            window.location.reload()
+        }
+
     }
+    else{
     process(e.key)
+    }
 });
 // selects a random word from an array.//
 var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON', 'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS', 'FIRE', 'ICE']
@@ -15,6 +20,14 @@ var currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 var guessesRemainingElement = document.getElementById("guesses-remaining");
 
 var alreadyGuessedElement = document.getElementById("already-guessed")
+
+var winsElement = document.getElementById("wins")
+
+var winsState = localStorage.getItem("wins") ? parseInt(localStorage.getItem("wins")) : 0;
+
+var losesElement = document.getElementById("loses")
+
+var losesState = localStorage.getItem("loses") ? parseInt(localStorage.getItem("loses")) : 0;
 
 var infoElement = document.getElementById("info")
 
@@ -40,6 +53,10 @@ for (var i = 0; i < currentWord.length; i++) {
 
 // make currentWordElement's text value = the string currentWordState
 currentWordElement.innerHTML = currentWordState;
+
+winsElement.innerHTML = winsState;
+
+losesElement.innerHTML = losesState;
 
 function process(key) {
     var upperCaseKey = key.toUpperCase()
@@ -68,11 +85,11 @@ function process(key) {
 
                 }
                 if (currentWordState.indexOf("_") === -1) {
-                    window.removeEventListener("keyup", function () { });
                     infoElement.style.visibility = 'visible';
                     infoElement.innerHTML = "You Win! - Press enter to play again";
                     isActive = false;
-                    localStorage.setItem("wins", localStorage.getItem("wins") + 1);
+                    winsState = localStorage.getItem("wins") ? parseInt(localStorage.getItem("wins")) : 0;
+                    localStorage.setItem("wins", winsState + 1);
                 }
 
 
@@ -82,11 +99,11 @@ function process(key) {
 
             guessesRemainingCount--;
             guessesRemainingElement.innerHTML = guessesRemainingCount;
-            window.removeEventListener("keyup", function () { });
             infoElement.style.visibility = 'visible';
             infoElement.innerHTML = "Game Over - You Lose - Press enter to play again";
             isActive = false;
-            localStorage.setItem("loses", localStorage.getItem("loses") + 1);
+            losesState = localStorage.getItem("loses") ? parseInt(localStorage.getItem("loses")) : 0;
+                    localStorage.setItem("loses", losesState + 1);
 
 
         }
