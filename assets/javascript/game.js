@@ -12,8 +12,6 @@ window.addEventListener("keyup", function (e) {         // callback function
     }
 });
 
-var audio = new Audio('C:/Users/Mark/bootcamp/Hangman-Game/assets/music/Game of Thrones.mp3');
-audio.play();
 
 // selects a random word from an array.//
 var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON', 'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS', 'FIRE', 'ICE']
