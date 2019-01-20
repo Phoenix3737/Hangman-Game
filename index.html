@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <title>Game of Thrones Hangman</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -28,7 +29,7 @@
         <div class="row">
 
             <div id="info" class="col-xs-8 col-xs-offset-2">
-                Press any letter key to start
+               <div class="pulsate"> Press any letter key to start </div>
             </div>
         </div>
 
@@ -46,6 +47,7 @@
                 <span id="wins" class="count">0</span>
                 Losses=
                 <span id="loses" class="count">0</span>
+                <button type="button" id="reset">Reset</button>
             </div>
 
             <div class="col-xs-6">
@@ -64,8 +66,15 @@
 
         </div>
 
-
-    
+        <div id="bgAudioControls">
+            <a href="#" >
+                <img id="mute" src="http://franriavilla.in/images/mute.png"alt="Sound Off" />
+            </a>
+        
+            <audio id="music" autoplay loop preload src="./assets/music/got.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
         <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>

@@ -1,39 +1,62 @@
 var isActive = true;
 
-window.addEventListener("keyup", function (e) {         // callback function
+//Event listener for keys//
+window.addEventListener("keyup", function (e) {         
     if (isActive === false) {
         if (e.keyCode === 13) {
-            window.location.reload()
+            window.location.reload();
         }
-
     }
     else {
-        process(e.key)
+        process(e.key);
+
     }
 });
 
+//Event listener for audio to play when the game starts//
+window.addEventListener("keyup", function mute(e) {
+    if (isActive === true) {
+        process(e.key);
+        var audio = document.getElementById("music");
+        audio.play();
+        //Mute button//
+        var muteButton = document.getElementById("mute");
+        muteButton.onclick = function () {
+            if (audio.paused) {
+                audio.play();
+                document.getElementById("mute").src = "http://franriavilla.in/images/mute.png";
+            } else {
+                audio.pause();
+                document.getElementById("mute").src = "http://franriavilla.in/images/unmute.png";
+                removeEventListener("keyup", mute); //remove listener so that audio doesn't restart after key press//
+            }
+        }
+    }
+});
 
 // selects a random word from an array.//
-var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON', 'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS', 'FIRE', 'ICE']
+var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON',
+                 'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS',
+                 'WOLF', 'LION', 'DRAGONSTONE', 'FIRE', 'ICE']
 
 var currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 
 // set a limit to the number of guesses
 var guessesRemainingElement = document.getElementById("guesses-remaining");
 
-var alreadyGuessedElement = document.getElementById("already-guessed")
+var alreadyGuessedElement = document.getElementById("already-guessed");
 
-var winsElement = document.getElementById("wins")
+var winsElement = document.getElementById("wins");
 
 var winsState = localStorage.getItem("wins") ? parseInt(localStorage.getItem("wins")) : 0;
 
-var losesElement = document.getElementById("loses")
+var losesElement = document.getElementById("loses");
 
 var losesState = localStorage.getItem("loses") ? parseInt(localStorage.getItem("loses")) : 0;
 
-var infoElement = document.getElementById("info")
+var infoElement = document.getElementById("info");
 
-var alreadyGuessedState = ""
+var alreadyGuessedState = "";
 
 // intitialize starting count
 var guessesRemainingCount = 15;
@@ -46,7 +69,7 @@ guessesRemainingElement.innerHTML = guessesRemainingCount;
 var currentWordElement = document.getElementById("current-word");
 
 // initialize current state to nothing
-var currentWordState = ""
+var currentWordState = "";
 
 // Make the current state a series of underscores with the same character length as the current word
 for (var i = 0; i < currentWord.length; i++) {
@@ -59,6 +82,13 @@ currentWordElement.innerHTML = currentWordState;
 winsElement.innerHTML = winsState;
 
 losesElement.innerHTML = losesState;
+
+var resetButton = document.getElementById("reset");
+
+resetButton.onclick= function(){
+    localStorage.clear();
+    window.location.reload();
+};
 
 function process(key) {
     var upperCaseKey = key.toUpperCase()
@@ -73,8 +103,6 @@ function process(key) {
             alreadyGuessedElement.innerHTML = alreadyGuessedState;
         }
 
-
-
         if (guessesRemainingCount > 1) {
             guessesRemainingCount--;
             guessesRemainingElement.innerHTML = guessesRemainingCount;
@@ -84,8 +112,8 @@ function process(key) {
                         currentWordState = replaceAtIndex(currentWordState, i, upperCaseKey)
                         currentWordElement.innerHTML = currentWordState;
                     }
-
                 }
+
                 if (currentWordState.indexOf("_") === -1) {
                     infoElement.style.visibility = 'visible';
                     infoElement.innerHTML = "You Win! - Press enter to play again";
@@ -93,11 +121,10 @@ function process(key) {
                     winsState = localStorage.getItem("wins") ? parseInt(localStorage.getItem("wins")) : 0;
                     localStorage.setItem("wins", winsState + 1);
                 }
-
-
-
             }
-        } else {
+        }
+
+        else {
 
             guessesRemainingCount--;
             guessesRemainingElement.innerHTML = guessesRemainingCount;
@@ -106,33 +133,13 @@ function process(key) {
             isActive = false;
             losesState = localStorage.getItem("loses") ? parseInt(localStorage.getItem("loses")) : 0;
             localStorage.setItem("loses", losesState + 1);
-
-
         }
     }
 }
 
-
-
 function replaceAtIndex(originalString, index, replacement) {
     return originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
 }
-
-// function process(key) {
-//     alreadyGuessedDisplay.innerHTML = alreadyGuessedDisplayCount;
-// }
-
-// Kill key up can be used for:
-// end game, already guessed non-response, 
-
-
-
-
-
-
-
-
-
 
 
 

@@ -39,21 +39,35 @@ body {
     border: 8px outset #b9b9b9;
     box-shadow: 10px 10px 20px black;
     margin-bottom: 25px;
-    font-size: 14px;
+    font-size: 20px;
     padding: 25px 0;
 }
 
-.blink{
-    animation: blink 1s infinite;
-    
- }
+#reset {
+    background-color: black;
+    font-size: 10px;
+    padding: 4px;
+    padding-top: 6px;
+    margin-top: 5px;
+}
 
- @keyframes blink{
-    0%{opacity: 1;}
-    75%{opacity: 1;}
-    76%{ opacity: 0;}
-    100%{opacity: 0;}
- }
+.pulsate {
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 1.0;
+    }
+    50% { 
+        opacity: 0.3;
+    }
+    100% { 
+        opacity: 1.0;
+    }
+}
 
 .img  {
     width: 50%;
@@ -115,9 +129,32 @@ h2 {
     font-size: 20px;
 }
 
-/* .game-text  {
-    float: right;
-} */
+#mute {
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    position:fixed;
+    left: 10%;
+    bottom: 15%;
+    -webkit-animation: pulse linear .5s infinite;
+	animation: pulse linear .5s infinite;
+    animation-iteration-count: 5;
+    /* animation-duration: 1.5s; */
+}
+
+/* Pulse class and keyframe animation */
+
+@-webkit-keyframes pulse {
+	0% { width:35px; height:35px; } 
+	50% { width:70px;; height:70px;; } 
+	100% { width:35px; height:35px; }
+}
+@keyframes pulse {
+	0% { width:35px; height:35px; } 
+	50% { width:70px;; height:70px;; } 
+	100% { width:35px; height:35px; }
+}
 
 
 
