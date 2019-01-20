@@ -9,14 +9,11 @@ window.addEventListener("keyup", function (e) {
     }
     else {
         process(e.key);
-
     }
 });
 
 //Event listener for audio to play when the game starts//
-window.addEventListener("keyup", function mute(e) {
-    if (isActive === true) {
-        process(e.key);
+window.addEventListener("keyup", function mute() {
         var audio = document.getElementById("music");
         audio.play();
         //Mute button//
@@ -28,11 +25,11 @@ window.addEventListener("keyup", function mute(e) {
             } else {
                 audio.pause();
                 document.getElementById("mute").src = "http://franriavilla.in/images/unmute.png";
-                removeEventListener("keyup", mute); //remove listener so that audio doesn't restart after key press//
+                removeEventListener("keyup", mute); //<--remove listener so that audio doesn't restart after key press//
             }
         }
     }
-});
+);
 
 // selects a random word from an array.//
 var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON',
@@ -73,7 +70,7 @@ var currentWordState = "";
 
 // Make the current state a series of underscores with the same character length as the current word
 for (var i = 0; i < currentWord.length; i++) {
-    currentWordState = currentWordState.concat("_");
+    currentWordState = currentWordState.concat("_"); //<---- this can be better//
 }
 
 // make currentWordElement's text value = the string currentWordState
@@ -86,7 +83,7 @@ losesElement.innerHTML = losesState;
 var resetButton = document.getElementById("reset");
 
 resetButton.onclick= function(){
-    localStorage.clear();
+    localStorage.clear(winsState,losesState);
     window.location.reload();
 };
 
@@ -94,9 +91,10 @@ function process(key) {
     var upperCaseKey = key.toUpperCase()
     if (/[A-Z]/.test(upperCaseKey) && upperCaseKey.length === 1) {
         infoElement.style.visibility = 'hidden';
-        if (alreadyGuessedState.indexOf(upperCaseKey) > -1) {
+        if (alreadyGuessedState.indexOf(upperCaseKey) > -1) {  
             infoElement.style.visibility = 'visible';
             infoElement.innerHTML = "You've already guessed that letter";
+            guessesRemainingCount++; //<--So that it doesnt count as a turn//
         }
         else {
             alreadyGuessedState = alreadyGuessedState + upperCaseKey;
