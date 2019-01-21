@@ -1,9 +1,9 @@
 var isActive = true;
 
 //Event listener for keys//
-window.addEventListener("keyup", function (e) {         
+window.addEventListener("keyup", function (e) {
     if (isActive === false) {
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13) { //<--- Press enter to play agian//
             window.location.reload();
         }
     }
@@ -13,28 +13,30 @@ window.addEventListener("keyup", function (e) {
 });
 
 //Event listener for audio to play when the game starts//
+document.getElementById("mute").style.display = "none";
 window.addEventListener("keyup", function mute() {
-        var audio = document.getElementById("music");
-        audio.play();
-        //Mute button//
-        var muteButton = document.getElementById("mute");
-        muteButton.onclick = function () {
-            if (audio.paused) {
-                audio.play();
-                document.getElementById("mute").src = "http://franriavilla.in/images/mute.png";
-            } else {
-                audio.pause();
-                document.getElementById("mute").src = "http://franriavilla.in/images/unmute.png";
-                removeEventListener("keyup", mute); //<--remove listener so that audio doesn't restart after key press//
-            }
+    document.getElementById("mute").style.display = "block";
+    var audio = document.getElementById("music");
+    audio.play();
+    //Mute button//
+    var muteButton = document.getElementById("mute");
+    muteButton.onclick = function () {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById("mute").src = "http://franriavilla.in/images/mute.png";
+        } else {
+            audio.pause();
+            document.getElementById("mute").src = "http://franriavilla.in/images/unmute.png";
+            removeEventListener("keyup", mute); //<--remove listener so that audio doesn't restart after key press//
         }
     }
+}
 );
 
 // selects a random word from an array.//
 var wordArray = ['STARK', 'LANNISTER', 'WILDLING', 'DRAGON',
-                 'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS',
-                 'WOLF', 'LION', 'DRAGONSTONE', 'FIRE', 'ICE']
+    'WILDFIRE', 'WINTERFELL', 'BARATHEON', 'WESTEROS',
+    'WOLF', 'LION', 'DRAGONSTONE', 'FIRE', 'ICE']
 
 var currentWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 
@@ -70,7 +72,18 @@ var currentWordState = "";
 
 // Make the current state a series of underscores with the same character length as the current word
 for (var i = 0; i < currentWord.length; i++) {
-    currentWordState = currentWordState.concat("_"); //<---- this can be better//
+    currentWordState = currentWordState.concat("\u2589"); //<---- replace with Wheel of Fortune blocks//
+    // console.log(currentWordState);
+    // for (var i = 0; i < currentWordState; i++){
+    // if (String.contains(Character.toString("\u2589") )){
+        // console.log("I'm a block!");
+    //    style character inline 
+    // }
+    // else{
+    //     it's a letter so leave it alone 
+    // }  
+    // }
+// }
 }
 
 // make currentWordElement's text value = the string currentWordState
@@ -82,8 +95,8 @@ losesElement.innerHTML = losesState;
 
 var resetButton = document.getElementById("reset");
 
-resetButton.onclick= function(){
-    localStorage.clear(winsState,losesState);
+resetButton.onclick = function () {
+    localStorage.clear(winsState, losesState);
     window.location.reload();
 };
 
@@ -91,7 +104,7 @@ function process(key) {
     var upperCaseKey = key.toUpperCase()
     if (/[A-Z]/.test(upperCaseKey) && upperCaseKey.length === 1) {
         infoElement.style.visibility = 'hidden';
-        if (alreadyGuessedState.indexOf(upperCaseKey) > -1) {  
+        if (alreadyGuessedState.indexOf(upperCaseKey) > -1) {
             infoElement.style.visibility = 'visible';
             infoElement.innerHTML = "You've already guessed that letter";
             guessesRemainingCount++; //<--So that it doesnt count as a turn//
@@ -107,12 +120,12 @@ function process(key) {
             if (currentWord.indexOf(upperCaseKey > -1)) {
                 for (var i = 0; i < currentWord.length; i++) {
                     if (upperCaseKey === currentWord.charAt(i)) {
-                        currentWordState = replaceAtIndex(currentWordState, i, upperCaseKey)
+                        currentWordState = replaceAtIndex(currentWordState, i, upperCaseKey);
                         currentWordElement.innerHTML = currentWordState;
                     }
                 }
 
-                if (currentWordState.indexOf("_") === -1) {
+                if (currentWordState.indexOf("\u2589") === -1) {
                     infoElement.style.visibility = 'visible';
                     infoElement.innerHTML = "You Win! - Press enter to play again";
                     isActive = false;
@@ -134,6 +147,21 @@ function process(key) {
         }
     }
 }
+
+// function blockReplace(){
+// var format = /\u2589/;
+// console.log(currentWordElement.innerHTML);
+// if( currentWordElement.innerHTML.match(format) ){
+//     currentWordElement.innerHTML.replace("\u2589", "W");
+//     console.log('true');
+//     return true;
+//   }else{
+//     console.log('false');
+//     return false;
+//   }
+// }
+
+// blockReplace();
 
 function replaceAtIndex(originalString, index, replacement) {
     return originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
