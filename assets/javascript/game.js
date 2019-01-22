@@ -65,26 +65,18 @@ guessesRemainingElement.innerHTML = guessesRemainingCount;
 
 
 // Get the node (element) that has the id of current-word
-var currentWordElement = document.getElementById("current-word");
+var currentWordElement = $("#current-word");
 
 // initialize current state to nothing
-var currentWordState = "";
+var currentWordState = [];
 
 // Make the current state a series of underscores with the same character length as the current word
 for (var i = 0; i < currentWord.length; i++) {
-    currentWordState = currentWordState.concat("\u2589"); //<---- replace with Wheel of Fortune blocks//
-    // console.log(currentWordState);
-    // for (var i = 0; i < currentWordState; i++){
-    // if (String.contains(Character.toString("\u2589") )){
-        // console.log("I'm a block!");
-    //    style character inline 
-    // }
-    // else{
-    //     it's a letter so leave it alone 
-    // }  
-    // }
-// }
+    currentWordElement.append(
+        $('<div class="blank"></div>')
+    );
 }
+console.log(currentWord);
 
 // make currentWordElement's text value = the string currentWordState
 currentWordElement.innerHTML = currentWordState;
@@ -120,12 +112,17 @@ function process(key) {
             if (currentWord.indexOf(upperCaseKey > -1)) {
                 for (var i = 0; i < currentWord.length; i++) {
                     if (upperCaseKey === currentWord.charAt(i)) {
-                        currentWordState = replaceAtIndex(currentWordState, i, upperCaseKey);
-                        currentWordElement.innerHTML = currentWordState;
+                        console.log($('#current-word div').eq(i).index());
+                        var selectedDiv = $('#current-word div').eq(i);
+                        selectedDiv.html(currentWord.charAt(i).toUpperCase());
+                        selectedDiv.css({
+                            backgroundColor: 'transparent'
+                        });
+                        selectedDiv.attr("class", "letter");
                     }
                 }
 
-                if (currentWordState.indexOf("\u2589") === -1) {
+                if  (!$("div.blank").length) {
                     infoElement.style.visibility = 'visible';
                     infoElement.innerHTML = "You Win! - Press enter to play again";
                     isActive = false;
@@ -148,20 +145,7 @@ function process(key) {
     }
 }
 
-// function blockReplace(){
-// var format = /\u2589/;
-// console.log(currentWordElement.innerHTML);
-// if( currentWordElement.innerHTML.match(format) ){
-//     currentWordElement.innerHTML.replace("\u2589", "W");
-//     console.log('true');
-//     return true;
-//   }else{
-//     console.log('false');
-//     return false;
-//   }
-// }
 
-// blockReplace();
 
 function replaceAtIndex(originalString, index, replacement) {
     return originalString.substr(0, index) + replacement + originalString.substr(index + replacement.length);
