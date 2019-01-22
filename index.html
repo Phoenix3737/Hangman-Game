@@ -26,7 +26,7 @@
         <div class="row">
 
             <div id="info" class="col-xs-8 col-xs-offset-2">
-               <div class="pulsate"> Press any letter key to start </div>
+                <div class="pulsate"> Press any letter key to start </div>
             </div>
         </div>
 
@@ -35,53 +35,49 @@
             <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <div class="guess">
                     <h1>Guess the Word</h1>
-                    <div id="current-word">
-
-
-
-                        
-                    </div>
+                    <div id="current-word"></div>
                 </div>
             </div>
 
-            <div id="score" class="class col-xs-12 col-md-2 text-center">
+            <div id="score" class="class col-xs-12 col-md-1 text-center">
                 Wins=
                 <span id="wins" class="count">0</span>
                 Losses=
                 <span id="loses" class="count">0</span>
                 <button type="button" id="reset">Reset</button>
             </div>
-
-            <div class="col-xs-6">
-                <div class="remaining">
-                    <h3>Guesses Remaining</h3>
-                    <div id="guesses-remaining"></div>
+            <div class="row bottom-container">
+                <div class="col-xs-6">
+                    <div class="remaining">
+                        <h3>Guesses Remaining</h3>
+                        <div id="guesses-remaining"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-6">
-                <div class="already">
-                    <h3>Already Guessed</h3>
-                    <div id="already-guessed"></div>
+                <div class="col-xs-6">
+                    <div class="already">
+                        <h3>Already Guessed</h3>
+                        <div id="already-guessed"></div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
         <div id="bgAudioControls">
-            <a href="#" >
-                <img id="mute" src="http://franriavilla.in/images/mute.png"alt="Sound Off" />
+            <a href="#">
+                <img id="mute" src="http://franriavilla.in/images/mute.png" alt="Sound Off" />
             </a>
-        
-            <audio id="music" autoplay loop preload src="./assets/music/got.mp3" type="audio/mpeg">
+
+            <audio id="music" autoplay loop preload 
+                src="./assets/music/got.mp3" type="audio/mpeg"
+                src="./assets/music/got.ogg" type="audio/ogg">
                 Your browser does not support the audio element.
             </audio>
         </div>
-        <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
-        </script>
+            </script>
         <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 

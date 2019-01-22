@@ -17,6 +17,7 @@ document.getElementById("mute").style.display = "none";
 window.addEventListener("keyup", function mute() {
     document.getElementById("mute").style.display = "block";
     var audio = document.getElementById("music");
+    audio.volume = 0.1;
     audio.play();
     //Mute button//
     var muteButton = document.getElementById("mute");
