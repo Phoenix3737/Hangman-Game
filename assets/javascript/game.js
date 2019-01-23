@@ -1,14 +1,15 @@
 var isActive = true;
 
-window.onload = function(){
-    audio.volume = 0.1;
-};
+// window.onload = function(){
+//     audio.volume = 0.1;
+// };
 
 //Event listener for keys//
 window.addEventListener("keyup", function (e) {
     if (isActive === false) {
         if (e.keyCode === 13) { //<--- Press enter to play agian//
             window.location.reload();
+            audio.volume = 0.1;
         }
     }
     else {
