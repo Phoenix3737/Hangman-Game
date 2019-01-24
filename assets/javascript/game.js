@@ -108,7 +108,7 @@ function process(key) {
             alreadyGuessedElement.innerHTML = alreadyGuessedState;
         }
 
-        if (guessesRemainingCount > 1) {
+        if (guessesRemainingCount > 0) {
             guessesRemainingCount--;
             guessesRemainingElement.innerHTML = guessesRemainingCount;
             if (currentWord.indexOf(upperCaseKey > -1)) {
